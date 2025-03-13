@@ -3,7 +3,7 @@ package com.bannrx.common_service.controller;
 import com.bannrx.common_service.apis.AddAddressApi;
 import com.bannrx.common_service.apis.DeleteAddressApi;
 import com.bannrx.common_service.apis.UpdateAddressApi;
-import com.bannrx.common_service.dtos.AddressDto;
+import com.bannrx.common.dtos.AddressDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import rklab.utility.dto.ApiOutput;

@@ -21,16 +21,31 @@ configurations {
 
 repositories {
 	mavenCentral()
-	val user: String? = project.findProperty("username") as String? ?: System.getenv("GITHUB_USERNAME")
-	val token: String? = project.findProperty("token") as String? ?: System.getenv("GITHUB_TOKEN")
-	val repo = "utility"
-	val gitUrl = "https://maven.pkg.github.com/${user}/${repo}"
-	maven {
-		name = "GitHubPackages"
-		url = uri(gitUrl)
-		credentials {
-			username = user
-			password = token
+	var env = project.findProperty("environment") as String? ?: System.getenv("ENVIRONMENT")
+	if (env != "local"){
+		val user: String? = project.findProperty("username") as String? ?: System.getenv("GITHUB_USERNAME")
+		val token: String? = project.findProperty("token") as String? ?: System.getenv("GITHUB_TOKEN")
+		val repo = "bannrx-common"
+		val gitUrl = "https://maven.pkg.github.com/${user}/${repo}"
+		maven {
+			name = "bannrx-common-package"
+			url = uri(gitUrl)
+			credentials {
+				username = user
+				password = token
+			}
+		}
+		val utilityUser: String? = project.findProperty("utility-username") as String? ?: System.getenv("GITHUB_USERNAME")
+		val utilityToken: String? = project.findProperty("utility-token") as String? ?: System.getenv("GITHUB_TOKEN")
+		val utilityRepo = "utility"
+		val utilityGitUrl = "https://maven.pkg.github.com/${utilityUser}/${utilityRepo}"
+		maven {
+			name = "GitHubPackages"
+			url = uri(utilityGitUrl)
+			credentials {
+				username = utilityUser
+				password = utilityToken
+			}
 		}
 	}
 }
@@ -49,7 +64,18 @@ dependencies {
 
 
 	//added
-	implementation("com.rklab:utility:0.0.1-SNAPSHOT")
+	var env = project.findProperty("environment") as String? ?: System.getenv("ENVIRONMENT")
+	if (env == "local"){
+		implementation(project(":common")) {
+			exclude(group="com.rklab", module="utility")
+		}
+		implementation(project(":utility"))
+	} else {
+		implementation("com.bannrx:common:base-0.0.1-SNAPSHOT"){
+			exclude(group="com.rklab", module="utility")
+		}
+		implementation("com.rklab:utility:0.0.1-SNAPSHOT")
+	}
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
 	implementation("org.springframework.security:spring-security-config:6.0.0")
 }

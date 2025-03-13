@@ -1,7 +1,7 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common_service.service.AddressService;
-import com.bannrx.common_service.service.UserService;
+import com.bannrx.common.service.AddressService;
+import com.bannrx.common.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
