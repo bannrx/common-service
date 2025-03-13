@@ -1,8 +1,8 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common_service.dtos.SignUpRequest;
-import com.bannrx.common_service.service.UserService;
-import com.bannrx.common_service.utilities.StringUtil;
+import com.bannrx.common.dtos.SignUpRequest;
+import com.bannrx.common.service.UserService;
+import com.bannrx.common.utilities.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

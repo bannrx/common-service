@@ -1,8 +1,8 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common_service.dtos.UserDto;
-import com.bannrx.common_service.service.UserService;
-import com.bannrx.common_service.utilities.StringUtil;
+import com.bannrx.common.dtos.UserDto;
+import com.bannrx.common.service.UserService;
+import com.bannrx.common.utilities.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

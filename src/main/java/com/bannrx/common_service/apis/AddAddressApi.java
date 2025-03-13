@@ -1,10 +1,10 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common_service.dtos.AddressDto;
-import com.bannrx.common_service.entities.User;
-import com.bannrx.common_service.service.AddressService;
-import com.bannrx.common_service.service.UserService;
-import com.bannrx.common_service.utilities.StringUtil;
+import com.bannrx.common.utilities.StringUtil;
+import com.bannrx.common.dtos.AddressDto;
+import com.bannrx.common.entities.User;
+import com.bannrx.common.service.AddressService;
+import com.bannrx.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -59,9 +59,9 @@ public class AddAddressApi {
             throw new InvalidInputException("Latitude is not provided");
         }
         addressService.canAddressBeAdded(user, addressDto);
-        if(addressService.isSameAddressExist(addressDto,user)){
+        /*if(addressService.isSameAddressExist(addressDto,user)){
             throw new InvalidInputException("Address already exist");
-        }
+        }*/
 
     }
 }
