@@ -78,6 +78,7 @@ dependencies {
 	}
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
 	implementation("org.springframework.security:spring-security-config:6.0.0")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
 }
 
 tasks.withType<Test> {

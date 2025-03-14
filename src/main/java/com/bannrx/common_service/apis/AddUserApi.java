@@ -4,19 +4,20 @@ import com.bannrx.common.dtos.SignUpRequest;
 import com.bannrx.common.service.UserService;
 import com.bannrx.common.utilities.StringUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 
 
 
 @Service
-@Slf4j
+@Loggable
 @RequiredArgsConstructor
 public class AddUserApi {
-    private UserService userService;
+
+    private final UserService userService;
 
     private static final String SUCCESS = "User %s signed up successfully";
 
