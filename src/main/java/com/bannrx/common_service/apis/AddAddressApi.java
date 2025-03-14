@@ -2,7 +2,7 @@ package com.bannrx.common_service.apis;
 
 import com.bannrx.common.utilities.StringUtil;
 import com.bannrx.common.dtos.AddressDto;
-import com.bannrx.common.entities.User;
+import com.bannrx.common.persistence.entities.User;
 import com.bannrx.common.service.AddressService;
 import com.bannrx.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

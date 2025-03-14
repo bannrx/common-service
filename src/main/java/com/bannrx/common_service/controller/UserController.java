@@ -6,19 +6,21 @@ import com.bannrx.common.dtos.SignUpRequest;
 import com.bannrx.common.dtos.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 
 
-
+@Loggable
 @RestController
 @RequestMapping("/api/user")
 @AllArgsConstructor
 public class UserController {
-    private AddUserApi addUserApi;
-    private UpdateUserApi updateUserApi;
-    private DeleteUserApi deleteUserApi;
+
+    private final AddUserApi addUserApi;
+    private final UpdateUserApi updateUserApi;
+    private final DeleteUserApi deleteUserApi;
 
     @PostMapping("/add")
     public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException {
@@ -35,3 +37,4 @@ public class UserController {
         return deleteUserApi.delete(addressId, phoneNo);
     }
 }
+
