@@ -38,3 +38,4 @@ out/
 
 ## added
 gradle.properties
+.env.*
