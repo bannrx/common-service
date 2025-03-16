@@ -71,7 +71,7 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:common:base-0.0.1-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:base-0.0.1-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
 		implementation("com.rklab:utility:0.0.1-SNAPSHOT")
