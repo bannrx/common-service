@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {
 		"com.bannrx.common.service",
+		"com.bannrx.common.securityfilters",
 		"com.bannrx.common_service",
 		"rklab.utility"
 })
