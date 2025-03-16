@@ -38,7 +38,7 @@ public class AddAddressApi {
         if(Objects.isNull(addressDto)){
             throw new NullPointerException("Address is null or empty please add something");
         }
-        User user = userService.findByPhoneNo(addressDto.getPhoneNo());
+        User user = userService.fetchByPhoneNo(addressDto.getPhoneNo());
 
         if(StringUtil.isNullOrEmpty(addressDto.getAddressLine1())){
             throw new InvalidInputException("Address Line is not provided");
