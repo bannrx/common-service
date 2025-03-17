@@ -57,10 +57,10 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	implementation ("org.modelmapper:modelmapper:3.2.0")
-	implementation("jakarta.validation:jakarta.validation-api:3.1.0")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.0")
-	implementation("org.apache.commons:commons-lang3:3.17.0")
+	implementation ("org.modelmapper:modelmapper:3.1.1")
+	implementation("jakarta.validation:jakarta.validation-api:3.0.1")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.0")
+	implementation("org.apache.commons:commons-lang3:3.14.0")
 
 
 	//added
@@ -71,14 +71,21 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:common:base-0.0.1-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:base-0.0.1-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
 		implementation("com.rklab:utility:0.0.1-SNAPSHOT")
 	}
-	implementation("org.springframework.boot:spring-boot-starter-security:3.3.4")
-	implementation("org.springframework.security:spring-security-config:6.2.4")
+	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
+	implementation("org.springframework.security:spring-security-config:6.0.0")
 	implementation("org.springframework.boot:spring-boot-starter-aop")
+	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
+
 }
 
 tasks.withType<Test> {
