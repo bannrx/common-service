@@ -26,8 +26,8 @@ public class AddAddressApi {
     public ApiOutput<?> addAddress(AddressDto addressDto){
         try{
             validate(addressDto);
-            var response = addressService.save(List.of(addressDto));
-            return new ApiOutput<>(HttpStatus.OK.value(), ADD_ADDRESS_MSG,response);
+//            var response = addressService.save(List.of(addressDto));
+            return new ApiOutput<>(HttpStatus.OK.value(), ADD_ADDRESS_MSG,"response");
         } catch (Exception e) {
             return new ApiOutput<>(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }

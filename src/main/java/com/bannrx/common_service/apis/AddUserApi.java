@@ -22,7 +22,7 @@ public class AddUserApi {
 
     private static final String SUCCESS = "User %s signed up successfully";
 
-    public ApiOutput<?> process(SignUpRequest request) throws InvalidInputException, ServerException {
+    public ApiOutput<?> process(SignUpRequest request) throws InvalidInputException, ServerException{
         validate(request);
         return new ApiOutput<>(HttpStatus.OK.value(),
                 String.format(SUCCESS, request.getPhoneNo()),
@@ -33,6 +33,14 @@ public class AddUserApi {
         validationUtils.validate(request);
         if (userService.isAlreadyRegister(request)){
             throw new InvalidInputException("User already exists.");
+        }
+
+        if(request.getBankDetailsDtoList() != null && request.getBankDetailsDtoList().size() > 1){
+            throw new InvalidInputException("Only one Bank details will be accepted");
+        }
+
+        if(request.getAddressDtoList() != null && request.getAddressDtoList().size() > 1){
+            throw new InvalidInputException("Only one Address details will be accepted");
         }
 
     }
