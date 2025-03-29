@@ -35,11 +35,11 @@ public class AddUserApi {
             throw new InvalidInputException("User already exists.");
         }
 
-        if(request.getBankDetailsDtoList() != null && request.getBankDetailsDtoList().size() > 1){
+        if(request.getBankDetailsDtoSet() != null && request.getBankDetailsDtoSet().size() > 1){
             throw new InvalidInputException("Only one Bank details will be accepted");
         }
 
-        if(request.getAddressDtoList() != null && request.getAddressDtoList().size() > 1){
+        if(request.getAddressDtoSet() != null && request.getAddressDtoSet().size() > 1){
             throw new InvalidInputException("Only one Address details will be accepted");
         }
 
