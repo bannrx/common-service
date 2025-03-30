@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bannrx"
-version = "0.0.1-SNAPSHOT"
+version = "addUser-0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
@@ -59,7 +59,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation ("org.modelmapper:modelmapper:3.1.1")
 	implementation("jakarta.validation:jakarta.validation-api:3.0.1")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.0")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.17.0")
 	implementation("org.apache.commons:commons-lang3:3.14.0")
 
 
@@ -71,10 +71,10 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:bannrx-common:base-0.0.1-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:addUser-0.0.1-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
-		implementation("com.rklab:utility:0.0.1-SNAPSHOT")
+		implementation("com.rklab:utility:addUser-0.0.1-SNAPSHOT")
 	}
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
 	implementation("org.springframework.security:spring-security-config:6.0.0")

@@ -24,12 +24,18 @@ public class WebConfiguration {
 
     @Autowired private AuthorizationFilter authorizationFilter;
 
+    private final String [] publicApi = {
+            "v1/api/user/add",
+            "/v1/api/user/token",
+            "/"
+
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.cors().and().csrf().disable()
                 .authorizeHttpRequests().requestMatchers(
-                        "/v1/api/user/token",
-                        "/")
+                        publicApi)
                 .permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/v1/**").authenticated()

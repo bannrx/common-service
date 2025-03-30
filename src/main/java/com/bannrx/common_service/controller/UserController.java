@@ -4,7 +4,7 @@ import com.bannrx.common_service.apis.AddUserApi;
 import com.bannrx.common_service.apis.DeleteUserApi;
 import com.bannrx.common_service.apis.GenerateTokenApi;
 import com.bannrx.common_service.apis.UpdateUserApi;
-import com.bannrx.common.dtos.RegisterUser;
+import com.bannrx.common.dtos.SignUpRequest;
 import com.bannrx.common.dtos.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class UserController {
     private final GenerateTokenApi generateTokenApi;
 
     @PostMapping("/add")
-    public ApiOutput<?> addUser(@RequestBody RegisterUser request) throws InvalidInputException, ServerException {
+    public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
         return addUserApi.process(request);
     }
 
