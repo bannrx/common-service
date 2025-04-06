@@ -26,7 +26,7 @@ public class WebConfiguration {
 
     private final String [] publicApi = {
             "v1/api/user/add",
-            "/v1/api/user/token",
+            "/v1/api/user/login",
             "/"
 
     };

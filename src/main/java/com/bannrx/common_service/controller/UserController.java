@@ -1,9 +1,8 @@
 package com.bannrx.common_service.controller;
 import com.bannrx.common.dtos.GenerateTokenRequest;
-import com.bannrx.common_service.apis.AddUserApi;
-import com.bannrx.common_service.apis.DeleteUserApi;
-import com.bannrx.common_service.apis.GenerateTokenApi;
-import com.bannrx.common_service.apis.UpdateUserApi;
+import com.bannrx.common.dtos.requests.PasswordLoginRequest;
+import com.bannrx.common.dtos.verification.PasswordVerificationData;
+import com.bannrx.common_service.apis.*;
 import com.bannrx.common.dtos.SignUpRequest;
 import com.bannrx.common.dtos.UserDto;
 import lombok.AllArgsConstructor;
@@ -24,6 +23,7 @@ public class UserController {
     private final UpdateUserApi updateUserApi;
     private final DeleteUserApi deleteUserApi;
     private final GenerateTokenApi generateTokenApi;
+    private final LoginApi loginApi;
 
     @PostMapping("/add")
     public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
@@ -46,6 +46,11 @@ public class UserController {
             @RequestHeader("password") String password
     ) throws InvalidInputException {
         return generateTokenApi.process(new GenerateTokenRequest(username, password));
+    }
+
+    @PostMapping("/login")
+    public ApiOutput<?> login(@RequestBody PasswordLoginRequest request) throws InvalidInputException {
+        return loginApi.process(request);
     }
 
 }
