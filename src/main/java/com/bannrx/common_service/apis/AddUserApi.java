@@ -26,7 +26,7 @@ public class AddUserApi {
         validate(request);
         return new ApiOutput<>(HttpStatus.OK.value(),
                 String.format(SUCCESS, request.getPhoneNo()),
-                userService.createUser(request));
+                userService.signUp(request));
     }
 
     private void validate(SignUpRequest request) throws InvalidInputException {
