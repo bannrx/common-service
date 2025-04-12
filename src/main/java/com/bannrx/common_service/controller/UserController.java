@@ -1,9 +1,8 @@
 package com.bannrx.common_service.controller;
-import com.bannrx.common.dtos.GenerateTokenRequest;
+import com.bannrx.common.dtos.requests.GenerateTokenRequest;
 import com.bannrx.common.dtos.requests.PasswordLoginRequest;
-import com.bannrx.common.dtos.verification.PasswordVerificationData;
 import com.bannrx.common_service.apis.*;
-import com.bannrx.common.dtos.SignUpRequest;
+import com.bannrx.common.dtos.requests.SignUpRequest;
 import com.bannrx.common.dtos.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

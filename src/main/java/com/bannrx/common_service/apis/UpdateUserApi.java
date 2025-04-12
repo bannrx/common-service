@@ -2,14 +2,11 @@ package com.bannrx.common_service.apis;
 
 import com.bannrx.common.dtos.UserDto;
 import com.bannrx.common.service.UserService;
-import com.bannrx.common.utilities.StringUtil;
 import com.bannrx.common.validationGroups.AvailableValidationGroup;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import rklab.utility.dto.ApiOutput;
-import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.utilities.ValidationUtils;
 
 
@@ -27,7 +24,7 @@ public class UpdateUserApi {
     public ApiOutput<?> update(UserDto userDto){
         try{
             validate(userDto);
-            var loggedInUser = userService.getLoggedInUser();
+            var loggedInUser = userService.fetchLoggedInUser();
             userDto.setId(loggedInUser.getId());
             UserDto retVal = userService.update(userDto);
             return new ApiOutput<>(HttpStatus.OK.value(), UPDATE_MSG, retVal);

@@ -1,8 +1,8 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common.dtos.GenerateTokenRequest;
+import com.bannrx.common.dtos.requests.GenerateTokenRequest;
 import com.bannrx.common.dtos.SecurityUserDto;
-import com.bannrx.common.dtos.TokenResponse;
+import com.bannrx.common.dtos.responses.TokenResponse;
 import com.bannrx.common.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

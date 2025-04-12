@@ -2,13 +2,18 @@ package com.bannrx.common_service.apis;
 
 import com.bannrx.common.dtos.AddressDto;
 import com.bannrx.common.service.AddressService;
+import com.bannrx.common.validationGroups.AvailableValidationGroup;
+import com.bannrx.common.validationGroups.UpdateValidationGroup;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
+import rklab.utility.utilities.ValidationUtils;
+
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class UpdateAddressApi {
@@ -18,6 +23,8 @@ public class UpdateAddressApi {
 
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private ValidationUtils validationUtils;
 
     public ApiOutput<AddressDto> update(AddressDto addressDto){
         try{
@@ -33,9 +40,7 @@ public class UpdateAddressApi {
         if(Objects.isNull(addressDto)){
             throw new InvalidInputException("Please provide something to update.");
         }
-        if(Strings.isEmpty(addressDto.getId())){
-            throw new InvalidInputException(("You need to provide id to update the address."));
-        }
+        validationUtils.validate(addressDto, Set.of(UpdateValidationGroup.class, AvailableValidationGroup.class));
     }
 
 }
