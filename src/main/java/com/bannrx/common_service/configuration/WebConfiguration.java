@@ -25,7 +25,7 @@ public class WebConfiguration {
     @Autowired private AuthorizationFilter authorizationFilter;
 
     private final String [] publicApi = {
-            "v1/api/user/add",
+            "/v1/api/user/bda/add",
             "/v1/api/user/login",
             "/"
 

@@ -3,12 +3,14 @@ package com.bannrx.common_service.apis;
 import com.bannrx.common.dtos.UserDto;
 import com.bannrx.common.service.UserService;
 import com.bannrx.common.utilities.StringUtil;
+import com.bannrx.common.validationGroups.AvailableValidationGroup;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
-
+import rklab.utility.utilities.ValidationUtils;
 
 
 @Service
@@ -18,11 +20,15 @@ public class UpdateUserApi {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ValidationUtils validationUtils;
 
 
     public ApiOutput<?> update(UserDto userDto){
         try{
             validate(userDto);
+            var loggedInUser = userService.getLoggedInUser();
+            userDto.setId(loggedInUser.getId());
             UserDto retVal = userService.update(userDto);
             return new ApiOutput<>(HttpStatus.OK.value(), UPDATE_MSG, retVal);
         } catch (Exception e) {
@@ -30,15 +36,7 @@ public class UpdateUserApi {
         }
     }
 
-    private void validate(UserDto userDto) throws InvalidInputException {
-        if(!StringUtil.isNullOrEmpty(userDto.getPhoneNo()) && userDto.getPhoneNo().length() != 10){
-            throw new InvalidInputException("Invalid phone number.");
-        }
-        if (!StringUtil.isNullOrEmpty(userDto.getPhoneNo())){
-            var existing = userService.existingContactNo(userDto.getPhoneNo());
-            if (existing){
-                throw new InvalidInputException("User exists with the given phone no "+userDto.getPhoneNo());
-            }
-        }
+    private void validate(UserDto userDto) {
+        validationUtils.validate(userDto, AvailableValidationGroup.class);
     }
 }
