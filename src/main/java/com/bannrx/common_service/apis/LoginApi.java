@@ -1,6 +1,6 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common.dtos.TokenResponse;
+import com.bannrx.common.dtos.responses.TokenResponse;
 import com.bannrx.common.dtos.requests.PasswordLoginRequest;
 import com.bannrx.common.dtos.verification.PasswordVerificationData;
 import com.bannrx.common.dtos.verification.VerificationDto;

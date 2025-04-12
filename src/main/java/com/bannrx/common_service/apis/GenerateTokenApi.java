@@ -1,7 +1,8 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common.dtos.GenerateTokenRequest;
-import com.bannrx.common.dtos.TokenResponse;
+import com.bannrx.common.dtos.requests.GenerateTokenRequest;
+import com.bannrx.common.dtos.SecurityUserDto;
+import com.bannrx.common.dtos.responses.TokenResponse;
 import com.bannrx.common.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +28,7 @@ public class GenerateTokenApi {
         var user = userService.fetchByEmail(request.getUsername());
         var password = user.getPassword();
         if (StringUtils.equals(password, request.getPassword())){
-            var token = jwtService.generateToken(configuration, user);
+            var token = jwtService.generateToken(configuration, new SecurityUserDto(user));
             return new ApiOutput<>(HttpStatus.OK.value(),
                     "Token generated.",
                     new TokenResponse(token));
