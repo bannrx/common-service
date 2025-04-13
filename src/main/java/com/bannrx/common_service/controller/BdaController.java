@@ -1,7 +1,9 @@
 package com.bannrx.common_service.controller;
 
+import com.bannrx.common.dtos.requests.SignUpRequest;
 import com.bannrx.common.searchCriteria.UserSearchCriteria;
 import com.bannrx.common_service.apis.AddBDAUserApi;
+import com.bannrx.common_service.apis.AddUserApi;
 import com.bannrx.common_service.apis.ListUserApi;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +25,18 @@ import java.io.IOException;
 @AllArgsConstructor
 public class BdaController {
 
-    private final AddBDAUserApi addUserApi;
+    private final AddUserApi addUserApi;
+    private final AddBDAUserApi addBdaUserApi;
     private final ListUserApi listUserApi;
 
     @PostMapping("/add")
+    public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
+        return addUserApi.process(request);
+    }
+
+    @PostMapping("/create")
     public ApiOutput<?> addUser(@RequestParam MultipartFile file, @RequestParam(defaultValue = "0") int sheetNo) throws InvalidInputException, ServerException, IOException {
-        return addUserApi.process(file, sheetNo);
+        return addBdaUserApi.process(file, sheetNo);
     }
 
     @GetMapping("/user")
