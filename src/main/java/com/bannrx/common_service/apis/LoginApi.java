@@ -6,7 +6,7 @@ import com.bannrx.common.dtos.verification.PasswordVerificationData;
 import com.bannrx.common.dtos.verification.VerificationDto;
 import com.bannrx.common.service.AuthTokenService;
 import com.bannrx.common.service.UserService;
-import com.bannrx.common.service.verification.AbstractVerificationService;
+import com.bannrx.common.service.verification.VerificationServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -25,7 +25,7 @@ public class LoginApi {
     @Autowired private ValidationUtils validationUtils;
     @Autowired private UserService userService;
     @Autowired private AuthTokenService authTokenService;
-    @Autowired private AbstractVerificationService verificationService;
+    @Autowired private VerificationServiceProvider verificationServiceProvider;
 
     public ApiOutput<?> process(PasswordLoginRequest request) throws InvalidInputException {
         var passwordVerificationDto = new PasswordVerificationData(request);
@@ -34,8 +34,8 @@ public class LoginApi {
                 .verificationData(passwordVerificationDto)
                 .verified(false)
                 .build();
-        var verificationProcess = verificationService.fetchServiceProvider(verificationDto);
-        verificationProcess.validate(verificationDto);
+        var verificationService = verificationServiceProvider.fetchServiceProvider(verificationDto);
+        verificationService.validate(verificationDto);
         verificationDto = verificationService.process(verificationDto);
         if (verificationDto.isVerified()){
             return new ApiOutput<>(HttpStatus.OK.value(), null, new TokenResponse(authTokenService.fetchToken(request.getUsername())));
