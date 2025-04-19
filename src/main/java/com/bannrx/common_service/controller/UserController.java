@@ -1,9 +1,10 @@
 package com.bannrx.common_service.controller;
+import com.bannrx.common.dtos.BankDetailsDto;
 import com.bannrx.common.dtos.requests.GenerateTokenRequest;
 import com.bannrx.common.dtos.requests.PasswordLoginRequest;
+import com.bannrx.common.dtos.user.UserBasicDetailsDto;
 import com.bannrx.common_service.apis.*;
 import com.bannrx.common.dtos.requests.SignUpRequest;
-import com.bannrx.common.dtos.UserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import rklab.utility.annotations.Loggable;
@@ -19,19 +20,25 @@ import rklab.utility.expectations.ServerException;
 public class UserController {
 
     private final AddUserApi addUserApi;
-    private final UpdateUserApi updateUserApi;
+    private final UpdateUserBasicDetailsApi updateUserBasicDetailsApi;
     private final DeleteUserApi deleteUserApi;
     private final GenerateTokenApi generateTokenApi;
     private final LoginApi loginApi;
+    private final UpdateBankDetailsApi updateBankDetailsApi;
 
     @PostMapping("/add")
     public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
         return addUserApi.process(request);
     }
 
-    @PutMapping("/update")
-    public ApiOutput<?> updateUser(@RequestBody UserDto userDto){
-        return updateUserApi.update(userDto);
+    @PutMapping("/update/basic-details")
+    public ApiOutput<?> updateUser(@RequestBody UserBasicDetailsDto userDto) {
+        return updateUserBasicDetailsApi.update(userDto);
+    }
+
+    @PutMapping("/update/bank-details")
+    public ApiOutput<?> updateBankDetails(@RequestBody BankDetailsDto bankDetailsDto) throws InvalidInputException, ServerException {
+        return updateBankDetailsApi.process(bankDetailsDto);
     }
 
     @DeleteMapping("/delete/{phoneNo}/{addressId}")

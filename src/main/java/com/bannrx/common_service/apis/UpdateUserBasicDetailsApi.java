@@ -1,6 +1,7 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common.dtos.UserDto;
+import com.bannrx.common.dtos.user.UserBasicDetailsDto;
+import com.bannrx.common.dtos.user.UserDto;
 import com.bannrx.common.service.UserService;
 import com.bannrx.common.validationGroups.AvailableValidationGroup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import rklab.utility.utilities.ValidationUtils;
 
 
 @Service
-public class UpdateUserApi {
+public class UpdateUserBasicDetailsApi {
 
     private static final String UPDATE_MSG = "User is updated successfully";
 
@@ -21,19 +22,19 @@ public class UpdateUserApi {
     private ValidationUtils validationUtils;
 
 
-    public ApiOutput<?> update(UserDto userDto){
+    public ApiOutput<?> update(UserBasicDetailsDto userDto){
         try{
             validate(userDto);
             var loggedInUser = userService.fetchLoggedInUser();
             userDto.setId(loggedInUser.getId());
-            UserDto retVal = userService.update(userDto);
+            UserDto retVal = userService.updateBasicDetails(userDto);
             return new ApiOutput<>(HttpStatus.OK.value(), UPDATE_MSG, retVal);
         } catch (Exception e) {
             return new ApiOutput<>(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
     }
 
-    private void validate(UserDto userDto) {
+    private void validate(UserBasicDetailsDto userDto) {
         validationUtils.validate(userDto, AvailableValidationGroup.class);
     }
 }
