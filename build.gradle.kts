@@ -71,10 +71,10 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:bannrx-common:common-0.0.3-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:common-0.0.4-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
-		implementation("com.rklab:utility:utility-0.0.3-SNAPSHOT")
+		implementation("com.rklab:utility:utility-0.0.4-SNAPSHOT")
 	}
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
 	implementation("org.springframework.security:spring-security-config:6.0.0")
@@ -84,6 +84,7 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.apache.commons:commons-collections4:4.4")
 
 
 }
