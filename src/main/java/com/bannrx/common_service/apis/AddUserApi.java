@@ -1,6 +1,5 @@
 package com.bannrx.common_service.apis;
 
-import com.bannrx.common.dtos.BankDetailsDto;
 import com.bannrx.common.dtos.requests.SignUpRequest;
 import com.bannrx.common.service.BankDetailsService;
 import com.bannrx.common.service.UserService;
@@ -14,8 +13,6 @@ import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 import rklab.utility.utilities.ValidationUtils;
 
-import java.util.Set;
-
 
 @Service
 @Loggable
@@ -25,6 +22,7 @@ public class AddUserApi {
     private final UserService userService;
     private final ValidationUtils validationUtils;
     private final BankDetailsService bankDetailsService;
+    private final VerifyBankDetailsApi verifyBankDetailsApi;
 
     private static final String SUCCESS = "User %s signed up successfully";
 
@@ -39,7 +37,6 @@ public class AddUserApi {
 
     private void validate(SignUpRequest request) throws InvalidInputException {
         validationUtils.validate(request);
-
         if (userService.isAlreadyRegister(request)){
             throw new InvalidInputException("User already exists.");
         }
@@ -53,8 +50,9 @@ public class AddUserApi {
         }
 
         if (request.getBankDetailsDtoSet() != null && request.getBankDetailsDtoSet().size() == 1) {
-            bankDetailsService.validateIsBankAccountNoExist(request.getBankDetailsDtoSet().iterator().next());
+            bankDetailsService.validateAdd(request.getBankDetailsDtoSet().iterator().next());
         }
 
     }
+
 }
