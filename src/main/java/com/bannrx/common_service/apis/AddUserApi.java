@@ -4,7 +4,6 @@ import com.bannrx.common.dtos.requests.SignUpRequest;
 import com.bannrx.common.service.BankDetailsService;
 import com.bannrx.common.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,6 @@ public class AddUserApi {
 
     private static final String SUCCESS = "User %s signed up successfully";
 
-    @SneakyThrows
     public ApiOutput<?> process(SignUpRequest request) throws InvalidInputException, ServerException{
         validate(request);
         return new ApiOutput<>(HttpStatus.OK.value(),
