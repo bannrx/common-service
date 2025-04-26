@@ -8,11 +8,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
-
+import rklab.utility.expectations.ServerException;
 
 
 @RestController
-@RequestMapping("/api/address")
+@RequestMapping("/v1/api/address")
 @AllArgsConstructor
 public class AddressController {
 
@@ -26,7 +26,7 @@ public class AddressController {
     }
 
     @PutMapping("/update")
-    public ApiOutput<?> updateAddress(@RequestBody AddressDto addressDto){
+    public ApiOutput<?> updateAddress(@RequestBody AddressDto addressDto) throws InvalidInputException, ServerException {
         return updateAddressApi.update(addressDto);
     }
 
