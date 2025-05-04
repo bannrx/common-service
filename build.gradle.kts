@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bannrx"
-version = "commonService-0.0.2-SNAPSHOT"
+version = "commonService-0.0.5-SNAPSHOT"
 
 java {
 	toolchain {
@@ -71,10 +71,10 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:bannrx-common:common-0.0.4-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:common-0.0.5-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
-		implementation("com.rklab:utility:utility-0.0.4-SNAPSHOT")
+		implementation("com.rklab:utility:utility-0.0.5-SNAPSHOT")
 	}
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
 	implementation("org.springframework.security:spring-security-config:6.0.0")

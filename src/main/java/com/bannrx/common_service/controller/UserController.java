@@ -1,5 +1,6 @@
 package com.bannrx.common_service.controller;
 import com.bannrx.common.dtos.BankDetailsDto;
+import com.bannrx.common.dtos.BusinessDto;
 import com.bannrx.common.dtos.requests.GenerateTokenRequest;
 import com.bannrx.common.dtos.requests.PasswordLoginRequest;
 import com.bannrx.common.dtos.user.UserBasicDetailsDto;
@@ -25,6 +26,7 @@ public class UserController {
     private final GenerateTokenApi generateTokenApi;
     private final LoginApi loginApi;
     private final UpdateBankDetailsApi updateBankDetailsApi;
+    private final UpdateBusinessApi updateBusinessApi;
 
     @PostMapping("/add")
     public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
@@ -57,6 +59,11 @@ public class UserController {
     @PostMapping("/login")
     public ApiOutput<?> login(@RequestBody PasswordLoginRequest request) throws InvalidInputException {
         return loginApi.process(request);
+    }
+
+    @PutMapping("/update/business-details")
+    public ApiOutput<?> updateBusinessDetails(@RequestBody BusinessDto businessDto) throws InvalidInputException, ServerException {
+        return updateBusinessApi.update(businessDto);
     }
 
 }
