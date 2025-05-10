@@ -1,7 +1,6 @@
 package com.bannrx.common_service.apis;
 
 import com.bannrx.common.dtos.device.DeviceDto;
-import com.bannrx.common.dtos.device.DeviceRegistration;
 import com.bannrx.common.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,12 +21,12 @@ public class AddDeviceApi {
 
     private static final String SUCCESS = "Device registration successfully";
 
-    public ApiOutput<?> process(DeviceRegistration request) throws ServerException {
+    public ApiOutput<?> process(DeviceDto request) throws ServerException {
         validate(request);
         return new ApiOutput<>(HttpStatus.OK.value(), SUCCESS, deviceService.register(request));
     }
 
-    private void validate(DeviceRegistration request) {
+    private void validate(DeviceDto request) {
         validationUtils.validate(request);
     }
 }
