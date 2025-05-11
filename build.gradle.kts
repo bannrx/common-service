@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bannrx"
-version = "commonService-0.0.5-SNAPSHOT"
+version = "common-service-0.0.6-SNAPSHOT"
 
 java {
 	toolchain {
@@ -71,7 +71,7 @@ dependencies {
 		}
 		implementation(project(":utility"))
 	} else {
-		implementation("com.bannrx:bannrx-common:common-0.0.5-SNAPSHOT"){
+		implementation("com.bannrx:bannrx-common:common-0.0.6-SNAPSHOT"){
 			exclude(group="com.rklab", module="utility")
 		}
 		implementation("com.rklab:utility:utility-0.0.5-SNAPSHOT")
