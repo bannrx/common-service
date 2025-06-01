@@ -6,12 +6,11 @@ import com.bannrx.common_service.apis.UpdateAddressApi;
 import com.bannrx.common.dtos.AddressDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 
-@Loggable
+
 @RestController
 @RequestMapping("/v1/api/address")
 @AllArgsConstructor

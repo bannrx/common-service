@@ -8,7 +8,6 @@ import com.bannrx.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 
@@ -18,7 +17,6 @@ import java.util.Objects;
 
 
 @Service
-@Loggable
 public class AddAddressApi {
     private static final String ADD_ADDRESS_MSG = "Address added Successfully";
 

@@ -4,7 +4,6 @@ import com.bannrx.common.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 
 
 @Service
-@Loggable
 public class DeleteAddressApi {
 
     @Autowired

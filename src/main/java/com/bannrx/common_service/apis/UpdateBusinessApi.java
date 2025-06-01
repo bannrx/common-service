@@ -7,14 +7,13 @@ import com.bannrx.common.validationGroups.UpdateValidationGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 import rklab.utility.utilities.ValidationUtils;
 
 
-@Loggable
+
 @Service
 @RequiredArgsConstructor
 public class UpdateBusinessApi {
