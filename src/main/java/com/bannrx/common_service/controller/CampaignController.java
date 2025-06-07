@@ -1,8 +1,10 @@
 package com.bannrx.common_service.controller;
 
 import com.bannrx.common.dtos.campaign.CampaignDto;
+import com.bannrx.common.searchCriteria.CampaignSearchCriteria;
 import com.bannrx.common_service.apis.AddCampaignApi;
 import com.bannrx.common_service.apis.DeleteCampaignApi;
+import com.bannrx.common_service.apis.FetchCampaignApi;
 import com.bannrx.common_service.apis.UpdateCampaignApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class CampaignController {
     private final AddCampaignApi addCampaignApi;
     private final UpdateCampaignApi updateCampaignApi;
     private final DeleteCampaignApi deleteCampaignApi;
-
+    private final FetchCampaignApi fetchCampaignApi;
 
     @PostMapping("/register")
     public ApiOutput<?> register(@RequestBody CampaignDto dto) throws ServerException, InvalidInputException {
@@ -35,5 +37,10 @@ public class CampaignController {
     @DeleteMapping("/delete")
     public ApiOutput<?> delete(@RequestParam String campaignId) throws InvalidInputException {
         return deleteCampaignApi.process(campaignId);
+    }
+
+    @GetMapping("/all")
+    public ApiOutput<?> fetchCampaignList(CampaignSearchCriteria searchCriteria){
+        return fetchCampaignApi.process(searchCriteria);
     }
 }
