@@ -15,9 +15,9 @@ import rklab.utility.dto.ApiOutput;
 public class FetchCampaignApi {
     private final CampaignService campaignService;
 
-    private static final String MMESSAGE = "All campaign is below";
+    private static final String MESSAGE = "All campaign is below";
 
     public ApiOutput<?> process(CampaignSearchCriteria searchCriteria){
-        return new ApiOutput<>(HttpStatus.OK.value(), MMESSAGE, campaignService.fetch(searchCriteria));
+        return new ApiOutput<>(HttpStatus.OK.value(), MESSAGE, campaignService.fetch(searchCriteria));
     }
 }

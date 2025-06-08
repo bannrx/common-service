@@ -25,7 +25,7 @@ public class CampaignController {
     private final FetchCampaignApi fetchCampaignApi;
 
     @PostMapping("/register")
-    public ApiOutput<?> register(@RequestBody CampaignDto dto) throws ServerException, InvalidInputException {
+    public ApiOutput<?> register(@RequestBody CampaignDto dto) throws InvalidInputException {
         return addCampaignApi.process(dto);
     }
 

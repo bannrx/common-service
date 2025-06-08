@@ -22,7 +22,7 @@ public class AddCampaignApi {
 
     private final static String SUCCESS_MESSAGE = "Campaign Register successfully";
 
-    public ApiOutput<?> process(CampaignDto dto) throws ServerException, InvalidInputException {
+    public ApiOutput<?> process(CampaignDto dto) throws InvalidInputException {
         validate(dto);
         return new ApiOutput<>(HttpStatus.OK.value(), SUCCESS_MESSAGE, campaignService.register(dto));
     }
