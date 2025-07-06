@@ -2,16 +2,15 @@ package com.bannrx.common_service.controller;
 
 import com.bannrx.common.dtos.device.DeviceDto;
 import com.bannrx.common.searchCriteria.DeviceSearchCriteria;
-import com.bannrx.common_service.apis.AddDeviceApi;
-import com.bannrx.common_service.apis.DeleteDeviceApi;
-import com.bannrx.common_service.apis.FetchAllDeviceApi;
-import com.bannrx.common_service.apis.UpdateDeviceApi;
+import com.bannrx.common.searchCriteria.DimensionSearchCriteria;
+import com.bannrx.common_service.apis.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
 import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
+
 
 
 @Loggable
@@ -24,6 +23,8 @@ public class DeviceController {
     private final UpdateDeviceApi updateDeviceApi;
     private final DeleteDeviceApi deleteDeviceApi;
     private final FetchAllDeviceApi fetchAllDeviceApi;
+    private final DimensionSearchApi dimensionSearchApi;
+
 
     @PostMapping("/register")
     public ApiOutput<?> register(@RequestBody DeviceDto request) throws ServerException {
@@ -43,5 +44,10 @@ public class DeviceController {
     @GetMapping("/all")
     public ApiOutput<?> fetchAllDevice(DeviceSearchCriteria searchCriteria) throws ServerException {
         return fetchAllDeviceApi.process(searchCriteria);
+    }
+
+    @GetMapping("/search/dimension")
+    public ApiOutput<?> fetchDimension(DimensionSearchCriteria searchCriteria){
+        return dimensionSearchApi.search(searchCriteria);
     }
 }
