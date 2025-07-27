@@ -6,6 +6,7 @@ import com.bannrx.common_service.apis.AddBDAUserApi;
 import com.bannrx.common_service.apis.AddUserApi;
 import com.bannrx.common_service.apis.ListUserApi;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import rklab.utility.annotations.Loggable;
@@ -19,6 +20,7 @@ import java.io.IOException;
  *
  */
 
+@PreAuthorize("hasAnyRole('ADMIN','BDA')")
 @Loggable
 @RestController
 @RequestMapping("/v1/api/user/bda")

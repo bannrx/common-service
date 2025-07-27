@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
+import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 import rklab.utility.utilities.ValidationUtils;
 
@@ -21,7 +22,7 @@ public class AddDeviceApi {
 
     private static final String SUCCESS = "Device registration successfully";
 
-    public ApiOutput<?> process(DeviceDto request) throws ServerException {
+    public ApiOutput<?> process(DeviceDto request) throws ServerException, InvalidInputException {
         validate(request);
         return new ApiOutput<>(HttpStatus.OK.value(), SUCCESS, deviceService.register(request));
     }
