@@ -5,6 +5,7 @@ import com.bannrx.common.searchCriteria.DeviceSearchCriteria;
 import com.bannrx.common.searchCriteria.DimensionSearchCriteria;
 import com.bannrx.common_service.apis.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rklab.utility.annotations.Loggable;
 import rklab.utility.dto.ApiOutput;
@@ -12,7 +13,7 @@ import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.expectations.ServerException;
 
 
-
+@PreAuthorize("hasAnyRole('ADMIN','OPERATIONS')")
 @Loggable
 @RequestMapping("/v1/api/device")
 @RestController
@@ -27,7 +28,7 @@ public class DeviceController {
 
 
     @PostMapping("/register")
-    public ApiOutput<?> register(@RequestBody DeviceDto request) throws ServerException {
+    public ApiOutput<?> register(@RequestBody DeviceDto request) throws ServerException, InvalidInputException {
         return addDeviceApi.process(request);
     }
 
@@ -35,9 +36,9 @@ public class DeviceController {
     public ApiOutput<?> update(@RequestBody DeviceDto request) throws InvalidInputException, ServerException {
         return updateDeviceApi.process(request);
     }
-
     @DeleteMapping("/delete")
     public ApiOutput<?> delete(@RequestParam String deviceId) throws InvalidInputException {
+
         return deleteDeviceApi.process(deviceId);
     }
 

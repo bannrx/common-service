@@ -27,6 +27,8 @@ public class UserController {
     private final LoginApi loginApi;
     private final UpdateBankDetailsApi updateBankDetailsApi;
     private final UpdateBusinessApi updateBusinessApi;
+    private final DeleteUserProfile deleteUserProfile;
+
 
     @PostMapping("/add")
     public ApiOutput<?> addUser(@RequestBody SignUpRequest request) throws InvalidInputException, ServerException {
@@ -64,6 +66,11 @@ public class UserController {
     @PutMapping("/update/business-details")
     public ApiOutput<?> updateBusinessDetails(@RequestBody BusinessDto businessDto) throws InvalidInputException, ServerException {
         return updateBusinessApi.update(businessDto);
+    }
+
+    @DeleteMapping("userProfile/delete/{userId}")
+    public ApiOutput<?> deleteUserProfile(@PathVariable String userId) throws InvalidInputException {
+        return deleteUserProfile.process(userId);
     }
 
 }
