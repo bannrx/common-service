@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import rklab.utility.expectations.InvalidInputException;
 import rklab.utility.utilities.DateUtils;
 
@@ -48,6 +49,11 @@ public class JWTConfiguration {
     @Bean
     public JWTConfigProperties jwtConfigProperties(){
         return properties;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
