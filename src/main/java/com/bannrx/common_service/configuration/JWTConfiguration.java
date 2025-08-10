@@ -51,9 +51,4 @@ public class JWTConfiguration {
         return properties;
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 }
