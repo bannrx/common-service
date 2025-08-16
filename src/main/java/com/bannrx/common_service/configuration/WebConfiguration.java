@@ -25,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebConfiguration {
 
     @Autowired private AuthorizationFilter authorizationFilter;
+    @Autowired private PasswordEncoder passwordEncoder;
 
     private final String [] publicApi = {
             "/v1/api/user/bda/add",
@@ -50,15 +51,10 @@ public class WebConfiguration {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public AuthenticationProvider authenticationProvider(){
         var retVal = new DaoAuthenticationProvider();
         retVal.setUserDetailsService(userDetailsService());
-        retVal.setPasswordEncoder(passwordEncoder());
+        retVal.setPasswordEncoder(passwordEncoder);
         return retVal;
     }
 
